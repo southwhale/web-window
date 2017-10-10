@@ -1,0 +1,427 @@
+* {
+	font-family: "黑体";
+	cursor: default;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-o-user-select:none;
+}
+
+a,
+a:visited {
+	text-decoration: none;
+}
+html,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.main {
+	box-sizing: border-box;
+	padding: 0 5%;
+	width: 100%;
+	height: 100%;
+	background: url(../img/bg.png) no-repeat center;
+	overflow: hidden;
+}
+
+.main-head {
+	overflow: hidden;
+	width: 100%;
+}
+
+.mh-left {
+	float: left;
+	width: 4.5rem;
+	height: 4.8rem;
+	background: url(../img/logo_03.png) no-repeat center top;
+	background-size: 100%;
+}
+
+.mh-right {
+	line-height: 4.8rem;
+	float: right;
+}
+
+.mh-right span {
+	color: white;
+	font-size: 14px;
+	display: inline-block;
+	width: 11.7rem;
+	height: 1.875rem;
+	line-height: 1.875rem;
+	border-radius: 0.95rem;
+	background: #46a1cd;
+	text-align: center;
+}
+
+.mh-right span a {
+	color: #fecf3f;
+}
+
+.main-body {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 1000px;
+	background: url(../img/foot-bg_02.png) center bottom no-repeat;
+	background-size: 100%;
+}
+
+.mydiv_body {
+	border: 1px solid #979797;
+	z-index: 3;
+	background: #F0F0F0;
+	box-sizing: border-box;
+	padding: 2px;
+	position: relative;
+	overflow: hidden;
+}
+
+.mydiv_body>div {
+	position: relative;
+	cursor: default;
+	width: 130px;
+	color: #000000;
+	font-family: '微软雅黑';
+	padding: 3px 0 3px 35px;
+	font-size: 12px;
+	border: 1px solid transparent;
+}
+
+.mydiv_body>div:hover {
+	border: 1px solid #a8c7f0;
+	border-radius: 3px;
+	background: rgba(70, 161, 205, 0.1);
+}
+
+.mydiv_body>div>font {
+	position: absolute;
+	right: 5px;
+	transform: rotate(-30deg) scale(0.6);
+}
+
+.shu {
+	position: absolute;
+	height: 100%;
+	left: 25px;
+	width: 1px;
+	background: #DDDDDD;
+}
+
+.shu:before {
+	position: absolute;
+	content: '';
+	height: 100px;
+	left: 1px;
+	width: 1px;
+	background: #ffffff;
+}
+
+#clear:before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 27px;
+	width: 100%;
+	display: block;
+	height: 1px;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.windows ul li {
+	display: block;
+	width: 76px;
+	height: 90px;
+	margin: 10px;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+.windows ul li>a {
+	display: block;
+	width: 100%;
+	padding: 5px 5px 0 5px;
+	box-sizing: border-box;
+	border: 1px solid rgba(255, 255, 255, 0);
+	border-radius: 3px;
+	height: 76px;
+	line-height: 76px;
+}
+.windows ul li a.current{
+	position: relative;
+	height: auto;
+	outline: none !important;
+	background: linear-gradient(215deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5)) !important;
+}
+
+.windows ul li>a:focus p {
+	text-align: center;
+	white-space: inherit;
+	text-overflow: inherit;
+	overflow: inherit;
+}
+
+.windows ul li:hover>a {
+	background: linear-gradient(215deg, rgba(255, 255, 255, 0.50), rgba(255, 255, 255, 0.35));
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.windows ul li>a>div {
+	background: url(../img/hongbao.png) center top no-repeat;
+	background-size: auto 100%;
+	width: 100%;
+	height: 50px;
+}
+
+.windows ul li>a>p {
+	text-align: center;
+	display: block;
+	width: 100%;
+	font-family: '雅黑';
+	color: #EEEEEE;
+	line-height: 120%;
+	font-size: 12px;
+	margin: 5px 0 0 0;
+	text-shadow: 1px 1px 1px #000000;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.app-ceng{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding-bottom: 5px;
+}
+.app-list{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.my_win {
+	background:#f0f0f0;
+	width: 600px;
+	height: 400px;
+	position: absolute;
+	top: 100px;
+	left: 20px;
+	z-index: 8;
+	box-shadow: 1px 1px 5px #000000;
+	border: 1px solid white;
+	border-radius: 3px;
+}
+.my_win .win-head{
+	z-index: 1;
+	position: relative;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+	background: #D8D8D8;
+}
+.my_win .win-head>span{
+	float: left;
+	display: block;
+	height: 30px;
+	margin-left: 10px;
+	padding-left:30px;
+	color: #000;
+	font-size: 14px;
+	text-shadow: 0px 0px 5px #fff;
+}
+.win-btn{
+	position: absolute;
+	top: 7px;
+	right: 0;
+}
+.win-btn>span{
+	float: left;
+	display: block;
+	width: 15px;
+	height: 15px;
+	box-sizing: border-box;
+	border-radius: 50%;
+	box-shadow: 1px 1px 5px #666666;
+	margin:0 5px;
+	opacity: 0.3;
+	transition: 0.1s;
+}
+.win-btn>span:hover{
+	opacity: 1;
+}
+.win-body{
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	padding:30px 10px 0px 10px;
+	border-bottom-right-radius:3px ;
+	border-bottom-left-radius:3px ;
+	overflow: hidden;
+	margin: 1px 2px 2px 2px;
+}
+.win-down{
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+	height: 40px;
+	border-top: 1px solid #000000;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+}
+.win-down:before{
+	content: '';
+	position: absolute;
+	top: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-image: url(../img/img0.jpg);
+	background-repeat: no-repeat;
+    background-position:center; 
+    background-attachment: fixed;
+	-webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -ms-filter: blur(5px);
+    -o-filter: blur(5px);
+    filter: blur(5px);
+   
+	padding: 20px;
+	margin: -20px;
+}
+.win-down>i{
+	position: absolute;
+	top: 0px;
+	display: block;
+	width: 100%;
+	height: 1px;
+	background: rgba(255,255,255,.6);
+}
+.win-down-body{
+	position: absolute;
+	top: 1px;
+	width: 100%;
+	height: 40px;
+	background: rgba(0,0,0,.15);
+}
+
+.max{
+	width: 100% !important;
+	height: 100% !important;
+	top: -1px !important;
+	left: -1px !important;
+}
+
+.premax{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	background: url(../img/tm.png) no-repeat content-box;
+	background-size: 100%;
+}
+.win-start{
+	width: 60px;
+	height: 100%;
+	float: left;
+}
+.win-datetime{
+	position: relative;
+	box-sizing: border-box;
+	width: 100px;
+	height: 100%;
+	float: right;
+}
+.win-datetime:before{
+	content: '';
+	display: block;
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	padding: 20px;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.2);
+	-webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -ms-filter: blur(15px);
+    -o-filter: blur(15px);
+    filter: blur(15px);
+}
+.win-datetime>p{
+	position: relative;
+	width: 100%;
+	height:20px;
+	margin: 0;
+	text-align: center;
+	color: white;
+	line-height: 16px;
+	font-size: 12px;
+	font-family: "微软雅黑";
+}
+.win-task{
+	position: relative;
+	box-sizing: border-box;
+	padding-left: 60px;
+	padding-right: 100px;
+	width: 100%;
+	height: 100%;
+	padding-bottom: 1px;
+}
+.win-task>.win-task-app{
+	width: 55px;
+	height: 100%;
+	float: left;
+	padding-bottom: 1px;
+	margin: 0 1px;
+	background: -webkit-linear-gradient(-55deg,rgba(255,255,255,0.7),rgba(255,255,255,0)) content-box;
+	border: 1px solid rgba(0,0,0,.4);
+	border-radius: 3px;
+	position: relative;
+	top: -2px;
+	overflow: hidden;
+}
+
+.win-task>.win-task-app.current>i{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	margin: -5px;
+	filter: blur(10px);
+	-webkit-filter:blur(10px);
+    -moz-filter: blur(10px);
+    -ms-filter: blur(10px);
+    -o-filter: blur(10px);
+}
+.task-img{
+	position: relative;
+	border: 1px solid rgba(255,255,255,.7);
+	border-radius: 3px;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 5px 10px;
+}
+.win-task>.win-task-app.down .task-img{
+	padding:6px 9px 4px 11px;
+}
+.app-list>.my_win:last-child .win-head{
+	background:#A8C7F0;
+}

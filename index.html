@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html style="width: 100%;height: 100%;overflow: hidden;"> 
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/app.js" ></script>
+		<script type="text/javascript" src="js/index.js" ></script>
+	</head>
+	<body style="width: 100%;height: 100%;overflow: hidden;background: url(img/img0.jpg) no-repeat center;background-attachment: fixed;position: relative;box-sizing: border-box;padding-bottom: 40px;">
+		<!--<canvas id="mycanvas" style="margin: 0px;position: absolute;top: 0;left: 0;z-index: 1;"></canvas>-->
+		<!--桌面选区-->
+		<canvas id="mytips" class="mytips" style="margin: 0px;position: absolute;top: 0;left: 0;z-index: 0;background: transparent;"></canvas>
+		<!--开始菜单-->
+		<div class="win-down">
+			<i></i>
+			<div class="win-down-body">
+				<div class="win-start"></div>
+				<div class="win-datetime">
+					<p></p>
+					<p></p>
+				</div>
+				<script>
+					var dates=new Date();
+					$(".win-datetime p").eq(0).text(dates.getHours()+":"+(dates.getMinutes()<10?("0"+dates.getMinutes()):dates.getMinutes()));
+					$(".win-datetime p").eq(1).text(dates.getYear()+1900+"/"+(dates.getMonth()+1)+"/"+dates.getDate());
+				</script>
+				<div class="win-task">
+				</div>
+			</div>
+		</div>
+		<!--开始菜单结束-->
+		<!--桌面图标-->
+		<div class="mydiv" style="width:100%;height:100%;position: absolute;top: 0px;left: 0px;display: block;z-index: 3;">
+			<div class="windows" style="position: absolute;top: 0px;left: 0px;display: block;margin: 5px;">
+				<ul>
+					<li>
+						<a href="javascript:;" app-id='1'>
+							<div data-url="url(img/hongbao.png)" style=""></div>
+							<p>红包雨</p>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;" app-id='2'>
+							<div data-url="url(img/recycle.png)" style="background:no-repeat center;background-image:url(img/recycle.png);background-size: auto 120%;"></div>
+							<p>回收站</p>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;" app-id='3'>
+							<div data-url="url(img/text_edit.png)" style="background:no-repeat center;background-image:url(img/text_edit.png); background-size: auto 120%;"></div>
+							<p>h5win7说明</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--桌面图标结束-->
+		<!--桌面右键弹框-->
+		<div class="mydiv_body" id="win-menu" style="position: absolute;display: none;z-index: 999;">
+				<span class="shu"></span>
+				<div style="" id="">
+					查看
+					<font style="">▲</font>
+				</div>
+				<div style="" id="">
+					排序方式	
+					<font style="">▲</font>
+					<div>
+						
+					</div>
+				</div>
+				<div style="" id="clear" style="">
+					刷新
+				</div>
+				<div style="" id="">
+					其他功能	
+				</div>
+				<span class="heng"></span>
+		</div>
+		<div class="mydiv_body" style="position: absolute;display: none;z-index: 999;">
+				<span class="shu"></span>
+				<div style="" id="">
+					查看
+					<font style="">▲</font>
+				</div>
+				<div style="" id="">
+					排序方式	
+					<font style="">▲</font>
+					<div>
+						
+					</div>
+				</div>
+				<div style="" id="clear" style="">
+					刷新
+				</div>
+				<div style="" id="">
+					其他功能	
+				</div>
+				<span class="heng"></span>
+		</div>
+		<!--桌面右键弹框结束-->
+		<!--应用程序层-->
+		<div class="app-ceng">
+			<div class="app-list">
+				
+			</div>
+		</div>
+		<!--应用程序层结束-->
+	</body>
+</html>
