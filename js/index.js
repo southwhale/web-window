@@ -47,6 +47,7 @@ function loadImage(arr,callback) {
             	i++
 			}else{
             	callback();
+            	return;
 			}
             if(img.complete){
 				f(i)
