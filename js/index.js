@@ -88,9 +88,11 @@ function loadWin(){
 	$("#win-menu").mousedown(function(e){
 		var event=window.event || e;
 		event.stopPropagation();
-	})
-
-	$(".windows>ul").on('dblclick','a',function() {
+	});
+	$(document).on('touchmove',function () {
+		event.preventDefault();
+    })
+	$(".windows>ul").on('dblclick touchend','a',function() {
 		var index = $(this).parent().index();
         if(running.check(appdata[index].appId)){
 			return;
@@ -98,33 +100,33 @@ function loadWin(){
 		createWin(appdata[index]);
 	});
 	//右键菜单的按下
-	$("body").delegate('#win-menu', 'mousedown', function(e) {
+	$("body").delegate('#win-menu', 'mousedown touchstart', function(e) {
 		var event=window.event ||e;
 		event.stopPropagation();
 		event.preventDefault();
 	})
 		//右键菜单的弹起
-	$(".mydiv").delegate('#win-menu', 'mouseup', function(e) {
+	$(".mydiv").delegate('#win-menu', 'mouseup touchend', function(e) {
 		var event=window.event ||e;
 		event.stopPropagation();
 		event.isPropagationStopped();
 		shadowHide();
 	})
 		//win窗口的鼠标按下
-	$("body").delegate('.my_win', 'mousedown', function(e) {
+	$("body").delegate('.my_win', 'mousedown touchstart', function(e) {
 		var event=window.event ||e;
 		event.stopPropagation();
 		event.preventDefault();
 	})
 		//win窗口的鼠标弹起
-	$("body").delegate('.my_win', 'mouseup', function(e) {
+	$("body").delegate('.my_win', 'mouseup touchend', function(e) {
 		var event=window.event ||e;
 		if(event.button==0){
 			return;
 		}
 		event.stopPropagation();
 		event.preventDefault();
-		$(window).off('mousemove');
+		$(window).off('mousemove touchmove');
 	})
 		//win窗口的双击
 	$("body").delegate('.win-head', 'dblclick', function(e) {
@@ -133,11 +135,11 @@ function loadWin(){
 		event.preventDefault();
 		$(this).parent().toggleClass('max');
 	});
-	$("body").delegate('.win-btn','dblclick',function(e){
+	$("body").delegate('.win-btn','dblclick ',function(e){
 		var event=window.event ||e;
 		event.stopPropagation();
 	})
-	$("body").delegate('.win-btn','mousedown',function(e){
+	$("body").delegate('.win-btn','mousedown touchstart',function(e){
 		var event=window.event ||e;
 		event.stopPropagation();
 	})
@@ -210,6 +212,10 @@ function loadWin(){
 	document.oncontextmenu = function() {
 		return false;
 	}
+	$('.app-list').on('touchend','.win-btn span',function () {
+		var index= $(this).index();
+		this.onclick();
+    })
 		//整个页面的按下
 	$("body").mousedown(function(e){
 		$("#win-menu").hide();
