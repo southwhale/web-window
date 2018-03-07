@@ -328,7 +328,7 @@ ul {
 	padding: 10px;
 	box-sizing: border-box;
 	background: url(../img/tm.png) no-repeat content-box;
-	background-size: 100%;
+	background-size: 100% 100%;
 }
 .win-start{
 	width: 60px;
