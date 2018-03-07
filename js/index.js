@@ -493,7 +493,7 @@ function shadowHide() {
 //创建窗口
 function createWin(app){
     running.push(app.appId);
-    var html = '<div class="my_win" app-id="'+app.appId+'" style="display:block;">' +
+    var html = '<div class="my_win" app-id="'+app.appId+'" style="display:block;width: '+ ( ($(window).width() - 40) > 600 ? 600 :($(window).width() - 40) )+'px" >' +
         '<div class="win-head">' +
         '<span style="background:url(' + app.img + ') no-repeat;background-size:auto 100%;">' + app.name + '</span>' +
         '<div class="win-btn">' +
