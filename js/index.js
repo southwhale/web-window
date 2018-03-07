@@ -24,7 +24,7 @@ $.getJSON("appList/appList.json",appdata,function(data){
                 $(".loading").css('display','none');
             },1000)
             loadWin();
-        },1000);
+        },2000);
 	};
 		appdata=data;
 		for(var i = 0;i < data.length; i ++){
@@ -36,13 +36,28 @@ $.getJSON("appList/appList.json",appdata,function(data){
                 '\t\t\t\t\t\t</a>\n' +
                 '\t\t\t\t\t</li>')
 		}
-		var img = new Image();
-		img.src = "img/img0.jpg";
-		if(img.complete){f()}else{
-			img.onload = f;
-		}
+		loadImage(["img/loading.gif","img/img0.jpg"],f);
 });
 var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null;
+function loadImage(arr,callback) {
+		var f = function (i) {
+            var img = new Image();
+            img.src = arr[i];
+            if(i < arr.length - 1){
+            	i++
+			}else{
+            	callback();
+			}
+            if(img.complete){
+				f(i)
+            }else{
+            	img.onload = function (ev) {
+            		f(i);
+				}
+			}
+        };
+		f(0)
+}
 function loadWin(){
     setInterval(function(){
         var dates=new Date();
