@@ -1,0 +1,23 @@
+[
+  {
+    "appId":"1",
+    "name" : "红包雨",
+    "type" : "",
+    "content" : "该功能正在开发中",
+    "img" : "img/hongbao.png"
+  },
+  {
+    "appId":"2",
+    "name" : "回收站",
+    "type" : "",
+    "content" : "该功能正在开发中",
+    "img" : "img/recycle.png"
+  },
+  {
+    "appId":"3",
+    "name" : "h5win7说明",
+    "type" : "",
+    "content" : "版本v0.3：添加进程管理，可拖拽调整位置，时间等，添加焦点窗口的颜色状态。<br /><br />版本v0.2：添加开始菜单进程窗口小功能，后续待更新<br /><br />版本v0.1：添加了窗口关闭打开，进程判断，移动临界判断，移动到顶自动放大等功能。优化了一些bug",
+    "img" : "img/text_edit.png"
+  }
+]

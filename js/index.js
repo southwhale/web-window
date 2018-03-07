@@ -1,6 +1,4 @@
 
-
-
 Array.prototype.check=function(a){
 		for(var i=0;i<this.length;i++){
 			if(a==this[i]){
@@ -18,18 +16,40 @@ Array.prototype.check=function(a){
 		}
 		return this;
 	}
-	var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null;
-	$.getJSON("data.json",appdata,function(data){
+$.getJSON("appList/appList.json",appdata,function(data){
+	var f = function(){
+        setTimeout(function () {
+            $(".loading").addClass('hide');
+            setTimeout(function () {
+                $(".loading").css('display','none');
+            },1000)
+            loadWin();
+        },1000);
+	};
 		appdata=data;
-	})
-setInterval(function(){
-	var dates=new Date();
-	$(".win-datetime p").eq(0).text(dates.getHours()+":"+(dates.getMinutes()<10?("0"+dates.getMinutes()):dates.getMinutes()));
-	$(".win-datetime p").eq(1).text(dates.getYear()+1900+"/"+(dates.getMonth()+1)+"/"+dates.getDate());
-},1000);
-
-$(function(){
-	if(window.location.href.indexOf("file://")!=-1){
+		for(var i = 0;i < data.length; i ++){
+			var app = data[i];
+            $(".windows").find("ul").append('<li>\n' +
+                '\t\t\t\t\t\t<a href="javascript:;" app-id="'+ app.appId + '" app-index="'+ i +'">\n' +
+                '\t\t\t\t\t\t\t<div data-url="url('+ app.img +')" style="background-image:url('+ app.img +')"></div>\n' +
+                '\t\t\t\t\t\t\t<p>'+ app.name +'</p>\n' +
+                '\t\t\t\t\t\t</a>\n' +
+                '\t\t\t\t\t</li>')
+		}
+		var img = new Image();
+		img.src = "img/img0.jpg";
+		if(img.complete){f()}else{
+			img.onload = f;
+		}
+});
+var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null;
+function loadWin(){
+    setInterval(function(){
+        var dates=new Date();
+        $(".win-datetime p").eq(0).text(dates.getHours()+":"+(dates.getMinutes()<10?("0"+dates.getMinutes()):dates.getMinutes()));
+        $(".win-datetime p").eq(1).text(dates.getYear()+1900+"/"+(dates.getMonth()+1)+"/"+dates.getDate());
+    },1000);
+    if(window.location.href.indexOf("file://")!=-1){
 		$("body").append('<div style="width: 100%;height:100%;position: absolute;z-index: 9999999;background: rgba(0,0,0,.4);top: 0;left: 0"><div style="position: relative;top: 50%;left: 50%;transform: translate(-50%,-50%);width: 300px;height: 100px;border: 1px solid #cccccc;background: #fff;"><div style="width: 100%;height: 25px;line-height: 25px;background: #A8C7F0;">error</div><p>请用服务器启动本文件</p></div></div>');
 		return;
 	}
@@ -53,14 +73,13 @@ $(function(){
 		var event=window.event || e;
 		event.stopPropagation();
 	})
-	$(".windows>ul>li>a").dblclick(function() {
-		var title = $(this).children("p").text();
-		var logo = $(this).children("div").attr("data-url");
-		var id=$(this).attr('app-id');
-		if(running.check(id)){
+
+	$(".windows>ul").on('dblclick','a',function() {
+		var index = $(this).parent().index();
+        if(running.check(appdata[index].appId)){
 			return;
 		}
-		createWin(title, logo,id);
+		createWin(appdata[index]);
 	});
 	//右键菜单的按下
 	$("body").delegate('#win-menu', 'mousedown', function(e) {
@@ -432,50 +451,48 @@ $(function(){
 			}
 		});
 	})
-	
-	//			桌面失去焦点
-	function lostFocus() {
-		$("#win-menu").hide();
-	}
-	//阴影重置
-	function shadowHide() {
-		var temp = $("#mytips").clone();
-		$("#mytips").remove();
-		$('body').append(temp);
-		drawInit();
-	}
-
-	//创建窗口
-	function createWin(title, logo,id){
-		running.push(id);
-		var html = '<div class="my_win" app-id="'+id+'" style="display:block;">' +
-			'<div class="win-head">' +
-			'<span style="background:' + logo + ' no-repeat;background-size:auto 100%;">' + title + '</span>' +
-			'<div class="win-btn">' +
-			'<span style="background: #8ec831;" onclick="winMin(this)"></span>' +
-			'<span style="background: #ffd348;" onclick="winMax(this)"></span>' +
-			'<span style="background: #ed4646;" onclick="closed(this)"></span>' +
-			'</div>' +
-			'</div>' +
-			'<div class="win-body">' +
-			'<p>'+eval("appdata.app"+id)+'</p>'+
-			'</div>' +
-			'</div>';
-		
-		$(".app-list").append(html);
-		$(".win-task").append('<div class="win-task-app" app-id="'+id+'"><i style="background:-webkit-linear-gradient(top,rgba(255,255,255,1.2),rgba(255,255,255,0.9)) content-box,'+logo+' no-repeat;"></i><div style="background: '+logo+' no-repeat center content-box;background-size: auto 120%;" class="task-img"></div></div>');
-		//禁用按钮的拖拽
-		$(".win-btn span").off('mousedown');
-		$(".win-btn span").mousedown(function(e) {
-			var event=window.event || e;
-			event.stopPropagation();
-		});
-	}
 	//焦点提前
 	$(".app-list").delegate('.my_win','mousedown',function(){
 		$(this).insertAfter($(".my_win").last());
 	});
-})
+}
+//			桌面失去焦点
+function lostFocus() {
+    $("#win-menu").hide();
+}
+//阴影重置
+function shadowHide() {
+    var temp = $("#mytips").clone();
+    $("#mytips").remove();
+    $('body').append(temp);
+    drawInit();
+}
+
+//创建窗口
+function createWin(app){
+    running.push(app.appId);
+    var html = '<div class="my_win" app-id="'+app.appId+'" style="display:block;">' +
+        '<div class="win-head">' +
+        '<span style="background:url(' + app.img + ') no-repeat;background-size:auto 100%;">' + app.name + '</span>' +
+        '<div class="win-btn">' +
+        '<span style="background: #8ec831;" onclick="winMin(this)"></span>' +
+        '<span style="background: #ffd348;" onclick="winMax(this)"></span>' +
+        '<span style="background: #ed4646;" onclick="closed(this)"></span>' +
+        '</div>' +
+        '</div>' +
+        '<div class="win-body">' +
+        '<p>'+ app.content +'</p>'+
+        '</div>' +
+        '</div>';
+    $(".app-list").append(html);
+    $(".win-task").append('<div class="win-task-app" app-id="'+app.appId+'"><i style="background:-webkit-linear-gradient(top,rgba(255,255,255,1.2),rgba(255,255,255,0.9)) content-box,url('+app.img+') no-repeat;"></i><div style="background: url('+app.img+') no-repeat center content-box;background-size: auto 120%;" class="task-img"></div></div>');
+    //禁用按钮的拖拽
+    $(".win-btn span").off('mousedown');
+    $(".win-btn span").mousedown(function(e) {
+        var event=window.event || e;
+        event.stopPropagation();
+    });
+}
 //关闭窗口
 function closed(now){
 	var id=$(now).parents(".my_win").attr("app-id");

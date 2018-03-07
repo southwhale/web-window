@@ -152,8 +152,6 @@ ul {
 	box-sizing: border-box;
 	border: 1px solid rgba(255, 255, 255, 0);
 	border-radius: 3px;
-	height: 76px;
-	line-height: 76px;
 }
 .windows ul li a.current{
 	position: relative;
@@ -424,4 +422,31 @@ ul {
 }
 .app-list>.my_win:last-child .win-head{
 	background:#A8C7F0;
+}
+
+
+/*开机*/
+.loading{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url("../img/loading.gif") #222222 no-repeat center center;
+	z-index: 999;
+	transition: 1s;
+}
+.loading.hide{
+	opacity: 0;
+}
+.loading p{
+	width: 100%;
+	position: absolute;
+	bottom: 180px;
+	color: #fff;
+	text-align: center;
+	font-family: "微软雅黑";
+}
+.loading p span{
+	font-size: 30px;
 }
