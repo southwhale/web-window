@@ -16,6 +16,9 @@ Array.prototype.check=function(a){
 		}
 		return this;
 	}
+	
+	
+var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null;
 $.getJSON("appList/appList.json",appdata,function(data){
 	var f = function(){
 		$('#main').css('background-image','url(img/img0.jpg)');
@@ -23,23 +26,25 @@ $.getJSON("appList/appList.json",appdata,function(data){
             $(".loading").addClass('hide');
             setTimeout(function () {
                 $(".loading").css('display','none');
+                $('.spinner').css('animation','none');
+				$('.spinner').css('-webkit-animation','none');
             },1000)
             loadWin();
         },2000);
 	};
-		appdata=data;
-		for(var i = 0;i < data.length; i ++){
-			var app = data[i];
-            $(".windows").find("ul").append('<li>\n' +
-                '\t\t\t\t\t\t<a href="javascript:;" app-id="'+ app.appId + '" app-index="'+ i +'">\n' +
-                '\t\t\t\t\t\t\t<div data-url="url('+ app.img +')" style="background-image:url('+ app.img +')"></div>\n' +
-                '\t\t\t\t\t\t\t<p>'+ app.name +'</p>\n' +
-                '\t\t\t\t\t\t</a>\n' +
-                '\t\t\t\t\t</li>')
-		}
-		loadImage(["img/img0.jpg"],f);
+	appdata=data;
+	for(var i = 0;i < data.length; i ++){
+		var app = data[i];
+        $(".windows").find("ul").append('<li>\n' +
+            '\t\t\t\t\t\t<a href="javascript:;" app-id="'+ app.appId + '" app-index="'+ i +'">\n' +
+            '\t\t\t\t\t\t\t<div data-url="url('+ app.img +')" style="background-image:url('+ app.img +')"></div>\n' +
+            '\t\t\t\t\t\t\t<p>'+ app.name +'</p>\n' +
+            '\t\t\t\t\t\t</a>\n' +
+            '\t\t\t\t\t</li>')
+	}
+	loadImage(["img/img0.jpg"],f);
 });
-var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null;
+
 function loadImage(arr,callback) {
 		var f = function (i) {
             var img = new Image();
@@ -60,6 +65,8 @@ function loadImage(arr,callback) {
         };
 		f(0)
 }
+
+//windows桌面加载
 function loadWin(){
     setInterval(function(){
         var dates=new Date();
@@ -134,7 +141,11 @@ function loadWin(){
 		var event=window.event ||e;
 		event.stopPropagation();
 		event.preventDefault();
-		$(this).parent().toggleClass('max');
+		if($(this).parents('.my_win').hasClass('max')){
+			winMin(this);
+		}else{
+			winMax(this);
+		}
 	});
 	$("body").delegate('.win-btn','dblclick ',function(e){
 		var event=window.event ||e;
@@ -179,8 +190,8 @@ function loadWin(){
 					ele.parent().prev('.premax').remove();
 					state=false;
 				}
-				ele.parent(".my_win").css({
-					"top": (function() {
+				var result = {
+					top : (function() {
 						//顶端处理
 						if(event.pageY - tempy + tops < 0) {
 							return 0;
@@ -189,17 +200,20 @@ function loadWin(){
 							return $("body").height() - 30;
 						}
 						return event.pageY - tempy + tops
-					})() + "px",
-					"left": (event.pageX - tempx + lefts)>$("body").width()-2?$("body").width()-2:(event.pageX - tempx + lefts<2-ele.parent(".my_win").width()?2-ele.parent(".my_win").width():event.pageX - tempx + lefts) + "px"
+					})(),
+					left: (event.pageX - tempx + lefts)>$("body").width()-2?$("body").width()-2:(event.pageX - tempx + lefts<2-ele.parent(".my_win").width()?2-ele.parent(".my_win").width():event.pageX - tempx + lefts)
+				}
+				ele.parent(".my_win").css({
+					left : result.left +'px',
+					top: result.top + 'px'
 				})
 			});
 			$(window).off('mouseup');
 			$(window).mouseup(function(e) {
 				var event=window.event ||e;
 				$(".premax").remove();
-				$(".my_win").css("transition","0.2s");
 				if(parseInt(ele.parent().css('top')) == 0 && event.pageY <= 0) {
-					ele.parent().addClass('max');
+					winMax(ele);
 				}
 				$(window).off('mousemove');
 			})
@@ -528,6 +542,12 @@ function closed(now){
 }
 //最大化
 function winMax(now){
+	if($(now).parents(".my_win").hasClass('max')){
+		$(".my_win").css("transition","0.2s");
+		setTimeout(function(){
+			$(".my_win").css("transition","0s");
+		},200)		
+	}
 	$(now).parents(".my_win").toggleClass('max');
 }
 //最小化

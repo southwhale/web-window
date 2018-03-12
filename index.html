@@ -18,14 +18,19 @@
 			<div class="win-down-body">
 				<div class="win-start"></div>
 				<div class="win-datetime">
-					<p></p>
-					<p></p>
+					<p>
+						<script>
+		                    var dates=new Date();
+		                    document.write(dates.getHours()+":"+(dates.getMinutes()<10?("0"+dates.getMinutes()):dates.getMinutes()));
+						</script>
+					</p>
+					<p>
+						<script>
+							document.write(dates.getYear()+1900+"/"+(dates.getMonth()+1)+"/"+dates.getDate())
+						</script>
+					</p>
 				</div>
-				<script>
-                    var dates=new Date();
-                    $(".win-datetime p").eq(0).text(dates.getHours()+":"+(dates.getMinutes()<10?("0"+dates.getMinutes()):dates.getMinutes()));
-                    $(".win-datetime p").eq(1).text(dates.getYear()+1900+"/"+(dates.getMonth()+1)+"/"+dates.getDate());
-				</script>
+				
 				<div class="win-task">
 				</div>
 			</div>
