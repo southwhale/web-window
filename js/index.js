@@ -18,7 +18,7 @@ Array.prototype.check=function(a){
 	}
 	
 	
-var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null;
+var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null,qp
 $.getJSON("appList/appList.json",appdata,function(data){
 	var f = function(){
 		$('.loading-file').text('加载完成');
@@ -45,6 +45,8 @@ $.getJSON("appList/appList.json",appdata,function(data){
 	}
 	loadImage(["img/img0.jpg","img/tm.png","img/recycle_full.png","img/recycle.png","img/shuihu.png","img/text_edit.png","img/tm.png"],f);
 });
+
+//图片懒加载器
 function loadImage(arr,callback) {
 		var f = function (i) {
 			$('.loading-file').text('正在加载图片\t\t' + arr[i]);
@@ -67,9 +69,11 @@ function loadImage(arr,callback) {
         };
 		f(0)
 }
-
 //windows桌面加载
 function loadWin(){
+	document.onclick = function(){
+		launchFullscreen(document.documentElement);
+	}
     setInterval(function(){
         var dates=new Date();
         $(".win-datetime p").eq(0).text(dates.getHours()+":"+(dates.getMinutes()<10?("0"+dates.getMinutes()):dates.getMinutes()));
@@ -562,7 +566,20 @@ function drawInit(){
 	ctx_tip = mytips.getContext('2d');
 }
 
-function pro(e){
-	var event = window.event || e
-	document.querySelector('.loading-file').innerText = ('正在加载资源\t\tjs/jQuery.js\t\t' + parseInt((event.loaded/65536) * 100) + '%');
+//全屏
+function launchFullscreen(element) {
+	if(qp){
+		return;
+	}
+	document.onmouseover = function(){}
+	qp = true;
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if(element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  }
 }
