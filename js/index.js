@@ -52,13 +52,14 @@ function loadImage(arr,callback) {
 			$('.loading-bar .bar').css('width',(i+1)/arr.length * 100 + '%');
             var img = new Image();
             img.src = arr[i];
-            var xhr = new  XMLHttpRequest();
+            var xhr = new XMLHttpRequest();
             xhr.open('GET',arr[i]);
             xhr.onprogress= function(e){
             	console.log(event.loaded/event.total * 100)
             	var event = window.event || e;
 				$('.loading-file').text('正在加载资源\t\t' + arr[i] + '\t\t' + event.loaded/event.total * 100 + '%');
             }
+			xhr.send();
             if(i < arr.length - 1){
             	i++
 			}else{
