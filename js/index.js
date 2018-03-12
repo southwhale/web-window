@@ -46,11 +46,27 @@ $.getJSON("appList/appList.json",appdata,function(data){
 	loadImage(["img/img0.jpg","img/tm.png","img/recycle_full.png","img/recycle.png","img/shuihu.png","img/text_edit.png","img/tm.png"],f);
 });
 
+var numInter;
+function numUp(ele,num){
+	var start = parseInt(ele.text());
+	clearInterval(numInter);
+	numInter = setInterval(function(){
+		if(start < num){
+			start +=2;
+			ele.text(start + '%');
+		} else{
+			clearInterval(numInter);
+		}
+	},1)
+
+}
+
 //图片懒加载器
 function loadImage(arr,callback) {
 		var f = function (i) {
 			$('.loading-file').text('正在加载图片\t\t' + arr[i]);
 			$('.loading-bar .bar').css('width',(i+1)/arr.length * 100 + '%');
+			numUp($('.loading-bar span'),parseInt((i+1)/arr.length * 100));
             var img = new Image();
             img.src = arr[i];
             if(i < arr.length - 1){
@@ -147,11 +163,7 @@ function loadWin(){
 		var event=window.event ||e;
 		event.stopPropagation();
 		event.preventDefault();
-		if($(this).parents('.my_win').hasClass('max')){
-			winMin(this);
-		}else{
-			winMax(this);
-		}
+		winMax(this);
 	});
 	$("body").delegate('.win-btn','dblclick ',function(e){
 		var event=window.event ||e;
@@ -173,6 +185,7 @@ function loadWin(){
 			var lefts = parseInt($(this).parent().css('left'));
 			var tops = parseInt($(this).parent().css('top'));
 			var state = false;
+			var move;
 			$(window).mousemove(function(e){
 				$(".my_win").css("transition","0");
 				var event=window.event ||e;
@@ -548,12 +561,10 @@ function closed(now){
 }
 //最大化
 function winMax(now){
-	if($(now).parents(".my_win").hasClass('max')){
-		$(".my_win").css("transition","0.2s");
-		setTimeout(function(){
-			$(".my_win").css("transition","0s");
-		},200)		
-	}
+	$(".my_win").css("transition","0.2s");
+	setTimeout(function(){
+		$(".my_win").css("transition","0s");
+	},200);
 	$(now).parents(".my_win").toggleClass('max');
 }
 //最小化
