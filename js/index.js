@@ -50,13 +50,11 @@ function loadImage(arr,callback) {
 		var f = function (i) {
 			$('.loading-file').text('正在加载资源\t\t' + arr[i]);
 			$('.loading-bar .bar').css('width',(i+1)/arr.length * 100 + '%');
-            var img = new Image();
-            img.src = arr[i];
             var xhr = new XMLHttpRequest();
             xhr.open('GET',arr[i]);
             xhr.onprogress= function(e){
-            	console.log(event.loaded/event.total * 100)
             	var event = window.event || e;
+            	console.log(event.loaded/event.total * 100)
 				$('.loading-file').text('正在加载资源\t\t' + arr[i] + '\t\t' + event.loaded/event.total * 100 + '%');
             }
 			xhr.send();
@@ -66,13 +64,11 @@ function loadImage(arr,callback) {
             	callback();
             	return;
 			}
-            if(img.complete){
-				f(i)
-            }else{
-            	img.onload = function (ev) {
-            		f(i);
-				}
-			}
+            xhr.onreadystatechange = function(){
+            	if (xhr.readyState==4 && xhr.status==200){
+			        f(i);
+			    }
+            }
         };
 		f(0)
 }
