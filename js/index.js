@@ -46,29 +46,29 @@ $.getJSON("appList/appList.json",appdata,function(data){
 	loadImage(["img/img0.jpg","img/tm.png","img/recycle_full.png","img/recycle.png","img/shuihu.png","img/text_edit.png","img/tm.png"],f);
 });
 
+console.log(Image.prototype)
 function loadImage(arr,callback) {
 		var f = function (i) {
 			$('.loading-file').text('正在加载资源\t\t' + arr[i]);
 			$('.loading-bar .bar').css('width',(i+1)/arr.length * 100 + '%');
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET',arr[i]);
-            xhr.onprogress= function(e){
-            	var event = window.event || e;
-            	console.log(event.loaded/event.total * 100)
-				$('.loading-file').text('正在加载资源\t\t' + arr[i] + '\t\t' + event.loaded/event.total * 100 + '%');
+            var img = new Image();
+            img.src = arr[i];
+            img.onprogress = function(e){
+            	console.log(e)
             }
-			xhr.send();
             if(i < arr.length - 1){
             	i++
 			}else{
             	callback();
             	return;
 			}
-            xhr.onreadystatechange = function(){
-            	if (xhr.readyState==4 && xhr.status==200){
-			        f(i);
-			    }
-            }
+            if(img.complete){
+				f(i)
+            }else{
+            	img.onload = function (ev) {
+            		f(i);
+				}
+			}
         };
 		f(0)
 }
