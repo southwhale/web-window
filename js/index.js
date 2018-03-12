@@ -52,6 +52,10 @@ function loadImage(arr,callback) {
 			$('.loading-bar .bar').css('width',(i+1)/arr.length * 100 + '%');
             var img = new Image();
             img.src = arr[i];
+            img.onprogress= function(e){
+            	var event = window.event || e;
+				$('.loading-file').text('正在加载资源\t\t' + arr[i] + '\t\t' + event.loaded/event.total * 100 + '%');
+            }
             if(i < arr.length - 1){
             	i++
 			}else{
