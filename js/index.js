@@ -45,8 +45,6 @@ $.getJSON("appList/appList.json",appdata,function(data){
 	}
 	loadImage(["img/img0.jpg","img/tm.png","img/recycle_full.png","img/recycle.png","img/shuihu.png","img/text_edit.png","img/tm.png"],f);
 });
-
-console.log(Image.prototype)
 function loadImage(arr,callback) {
 		var f = function (i) {
 			$('.loading-file').text('正在加载资源\t\t' + arr[i]);
