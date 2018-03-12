@@ -88,33 +88,13 @@
 					<div style="background-color: #FFC30D;"></div>
 				</div>
 				<div class="loading-bar">
-					<p class="loading-file">正在加载资源  js/jQuery.js  0%</p>
+					<p class="loading-file">正在加载资源  js/jQuery.js </p>
 					<div class="bar"></div>
 				</div>
 				<p><span>Windows7 Web版</span>&nbsp;&nbsp;&nbsp;正在启动</p>	
 			</div>
 		</div>
-	<script>
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET','https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js');
-		xhr.onprogress = function(ev){
-			var event = window.event || ev;
-			console.log(event.loaded)
-			document.querySelector('.loading-file').innerText = ('正在加载资源\t\tjs/jQuery.js\t\t' + parseInt((event.loaded/86927) * 100) + '%');
-		}
-		xhr.onreadystatechange = function(){
-			if (xhr.readyState==4 && xhr.status==200){
-				var script = document.createElement('script');
-				script.type = 'text/javascript';
-				script.src = 'js/index.js';
-				var jq = document.createElement('script');
-				jq.type = 'text/javascript';
-				jq.innerHTML = xhr.responseText;
-				document.body.appendChild(jq);
-				document.body.appendChild(script);
-		    }
-		}
-		xhr.send();
-	</script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 	</body>
 </html>

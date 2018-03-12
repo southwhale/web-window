@@ -511,6 +511,7 @@ ul {
 	box-sizing: border-box;
 }
 .loading-bar .bar{
+	transition: .1s ease-in;
 	height: 6px;
 	width: 0%;
 	border-radius: 3px;

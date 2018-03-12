@@ -47,13 +47,10 @@ $.getJSON("appList/appList.json",appdata,function(data){
 });
 function loadImage(arr,callback) {
 		var f = function (i) {
-			$('.loading-file').text('正在加载资源\t\t' + arr[i]);
+			$('.loading-file').text('正在加载图片\t\t' + arr[i]);
 			$('.loading-bar .bar').css('width',(i+1)/arr.length * 100 + '%');
             var img = new Image();
             img.src = arr[i];
-            img.onprogress = function(e){
-            	console.log(e)
-            }
             if(i < arr.length - 1){
             	i++
 			}else{
@@ -567,6 +564,5 @@ function drawInit(){
 
 function pro(e){
 	var event = window.event || e
-	console.log(event.loaded)
 	document.querySelector('.loading-file').innerText = ('正在加载资源\t\tjs/jQuery.js\t\t' + parseInt((event.loaded/65536) * 100) + '%');
 }
