@@ -87,9 +87,9 @@ function loadImage(arr,callback) {
 }
 //windows桌面加载
 function loadWin(){
-	document.onclick = function(){
-		launchFullscreen(document.documentElement);
-	}
+//	document.onclick = function(){
+//		launchFullscreen(document.documentElement);
+//	}
     setInterval(function(){
         var dates=new Date();
         $(".win-datetime p").eq(0).text(dates.getHours()+":"+(dates.getMinutes()<10?("0"+dates.getMinutes()):dates.getMinutes()));
