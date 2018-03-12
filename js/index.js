@@ -564,3 +564,9 @@ function drawInit(){
 	mytips = document.getElementById("mytips");
 	ctx_tip = mytips.getContext('2d');
 }
+
+function pro(e){
+	var event = window.event || e
+	console.log(event.loaded)
+	document.querySelector('.loading-file').innerText = ('正在加载资源\t\tjs/jQuery.js\t\t' + parseInt((event.loaded/65536) * 100) + '%');
+}
