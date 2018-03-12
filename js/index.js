@@ -21,6 +21,7 @@ Array.prototype.check=function(a){
 var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null;
 $.getJSON("appList/appList.json",appdata,function(data){
 	var f = function(){
+		$('.loading-file').text('加载完成');
 		$('#main').css('background-image','url(img/img0.jpg)');
         setTimeout(function () {
             $(".loading").addClass('hide');
@@ -42,11 +43,13 @@ $.getJSON("appList/appList.json",appdata,function(data){
             '\t\t\t\t\t\t</a>\n' +
             '\t\t\t\t\t</li>')
 	}
-	loadImage(["img/img0.jpg"],f);
+	loadImage(["img/img0.jpg","img/tm.png","img/recycle_full.png","img/recycle.png","img/shuihu.png","img/text_edit.png","img/tm.png"],f);
 });
 
 function loadImage(arr,callback) {
 		var f = function (i) {
+			$('.loading-file').text('正在加载资源\t\t' + arr[i]);
+			$('.loading-bar .bar').css('width',(i+1)/arr.length * 100 + '%');
             var img = new Image();
             img.src = arr[i];
             if(i < arr.length - 1){

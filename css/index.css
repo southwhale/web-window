@@ -499,3 +499,29 @@ ul {
     -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
   }
 }
+
+.loading-bar{
+	width: 300px;
+	height: 14px;
+	border-radius: 5px;
+	border: 2px solid #fff;
+	margin: 0 auto;
+	position: relative;
+	padding: 2px;
+	box-sizing: border-box;
+}
+.loading-bar .bar{
+	height: 6px;
+	width: 0%;
+	border-radius: 3px;
+	background-color: #fff;
+}
+.loading-bar p{
+	text-align: center;
+	margin: 0;
+	position: absolute;
+	height: 30px;
+	top: -40px;
+	line-height: 30px;
+}
+
