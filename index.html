@@ -98,8 +98,7 @@
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET','https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js');
 		xhr.onprogress = function(event){
-			console.log(event.loaded);
-	        console.log(event.total);
+			document.querySelector('.loading-file').innerText = ('正在加载资源\t\tjs/jQuery.js\t\t' + event.loaded/event.total * 100 + '%');
 		}
 	</script>
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
