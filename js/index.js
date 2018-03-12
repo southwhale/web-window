@@ -57,7 +57,7 @@ function numUp(ele,num){
 		} else{
 			clearInterval(numInter);
 		}
-	},1)
+	},5)
 
 }
 
