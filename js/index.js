@@ -18,6 +18,7 @@ Array.prototype.check=function(a){
 	}
 $.getJSON("appList/appList.json",appdata,function(data){
 	var f = function(){
+		$('#main').css('background-image','url(img/img0.jpg)');
         setTimeout(function () {
             $(".loading").addClass('hide');
             setTimeout(function () {
@@ -36,7 +37,7 @@ $.getJSON("appList/appList.json",appdata,function(data){
                 '\t\t\t\t\t\t</a>\n' +
                 '\t\t\t\t\t</li>')
 		}
-		loadImage(["img/loading.gif","img/img0.jpg"],f);
+		loadImage(["img/img0.jpg"],f);
 });
 var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null;
 function loadImage(arr,callback) {

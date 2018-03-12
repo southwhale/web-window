@@ -7,8 +7,9 @@
 		<link rel="stylesheet" href="css/index.css" />
 		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 	</head>
-	<body style="width: 100%;height: 100%;overflow: hidden;background: url(img/img0.jpg) no-repeat center;background-attachment: fixed;position: relative;box-sizing: border-box;padding-bottom: 40px;">
-		<!--<canvas id="mycanvas" style="margin: 0px;position: absolute;top: 0;left: 0;z-index: 1;"></canvas>-->
+	<body style="width: 100%;height: 100%;position:relative;">
+		
+		<div id="main" style="display: block;width: 100%;height: 100%;overflow: hidden;background:no-repeat center;background-attachment: fixed;position: relative;box-sizing: border-box;padding-bottom: 40px;"> <!--<canvas id="mycanvas" style="margin: 0px;position: absolute;top: 0;left: 0;z-index: 1;"></canvas>-->
 		<!--桌面选区-->
 		<canvas id="mytips" class="mytips" style="margin: 0px;position: absolute;top: 0;left: 0;z-index: 0;background: transparent;"></canvas>
 		<!--开始菜单-->
@@ -69,10 +70,20 @@
 			</div>
 		</div>
 		<!--应用程序层结束-->
+		</div>
+		
 
 		<!--开机页面-->
 		<div class="loading">
-			<p><span>Windows7 Web版</span>&nbsp;&nbsp;&nbsp;正在启动</p>
+			<div class="loadding-content">
+				<div class="spinner">
+					<div style="background-color: #F36422;"></div>
+					<div style="background-color: #8DC53E;"></div>
+					<div style="background-color: #00ADEF;"></div>
+					<div style="background-color: #FFC30D;"></div>
+				</div>
+				<p><span>Windows7 Web版</span>&nbsp;&nbsp;&nbsp;正在启动</p>	
+			</div>
 		</div>
 	<script type="text/javascript" src="js/index.js" ></script>
 	</body>
