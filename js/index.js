@@ -66,9 +66,9 @@ function init(){
 //数字频繁增加器
 var numInter;
 function numUp(ele,num,time){
-	var start = parseInt(ele.text());
 	clearInterval(numInter);
 	numInter = setInterval(function(){
+		var start = parseInt(ele.text());
 		if(start < num){
 			start +=2;
 			$('.loading-bar .bar').css('width',start + '%');
