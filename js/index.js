@@ -27,7 +27,7 @@ function init(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var data = JSON.parse(xhr.responseText);
-			var f = function(){
+				var f = function(){
 			$('.loading-file').text('加载完成');
 			$('#main').css('background-image','url(img/img0.jpg)');
 	        setTimeout(function () {
@@ -55,8 +55,8 @@ function init(){
 	};
 	xhr.onprogress = function(ev){
 		var event = window.event || ev;
-		console.log(event)
-		numUp($('.loading-bar span'),parseInt(event.loaded/event.total * 100));
+		$('.loading-bar .bar').css('width',parseInt($('.loading-bar span').text()) + 10 + '%');
+		numUp($('.loading-bar span'),parseInt($('.loading-bar span').text()) + 10 + "%");
 	}
 	xhr.send();
 }
