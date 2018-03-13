@@ -94,7 +94,7 @@ function loadImage(arr,callback) {
 			}
 			$('.loading-file').text('正在加载图片\t\t' + arr[i-1]);
             var img = new Image();
-            img.src = arr[i];
+            img.src = arr[i-1];
 			img.onerror = function(){
 				f(i);
 			}
