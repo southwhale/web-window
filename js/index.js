@@ -65,25 +65,25 @@ function init(){
 
 //数字频繁增加器
 var numInter;
-function numUp(ele,num){
+function numUp(ele,num,time){
 	var start = parseInt(ele.text());
 	clearInterval(numInter);
 	numInter = setInterval(function(){
 		if(start < num){
 			start +=2;
+			$('.loading-bar .bar').css('width',start + '%');
 			ele.text(start + '%');
 		} else{
 			clearInterval(numInter);
 		}
-	},5)
-
+	},time||5)
 }
+
 
 //图片懒加载器
 function loadImage(arr,callback) {
 		var f = function (i) {
 			if(i > 0){
-				$('.loading-bar .bar').css('width',(i)/arr.length * 100 + '%');
 				numUp($('.loading-bar span'),parseInt((i)/arr.length * 100));
 			}
 			if(i < arr.length){
@@ -95,6 +95,7 @@ function loadImage(arr,callback) {
 			$('.loading-file').text('正在加载图片\t\t' + arr[i-1]);
             var img = new Image();
             img.src = arr[i-1];
+            numUp($('.loading-bar span'),parseInt((i)/arr.length * 100),200)
 			img.onerror = function(){
 				f(i);
 			}
