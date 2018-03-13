@@ -44,7 +44,7 @@ $.getJSON("appList/appList.json",appdata,function(data){
             '\t\t\t\t\t\t</a>\n' +
             '\t\t\t\t\t</li>')
 	}
-	loadImage(["img/img0.jpg","img/tm.png","img/recycle_full.png","img/recycle.png","img/shuihu.png","img/text_edit.png","img/tm.png"],f);
+	loadImage(["img/img0.jpg","img/recycle_full.png","img/recycle.png","img/shuihu.png","img/text_edit.png","img/tm.png"],f);
 });
 
 
