@@ -16,9 +16,10 @@ Array.prototype.check=function(a){
 		}
 		return this;
 	}
-	
-	
-var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null,qp
+//全局变量
+var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null,qp;
+
+//app数据获取
 $.getJSON("appList/appList.json",appdata,function(data){
 	var f = function(){
 		$('.loading-file').text('加载完成');
@@ -46,6 +47,8 @@ $.getJSON("appList/appList.json",appdata,function(data){
 	loadImage(["img/img0.jpg","img/tm.png","img/recycle_full.png","img/recycle.png","img/shuihu.png","img/text_edit.png","img/tm.png"],f);
 });
 
+
+//数字频繁增加器
 var numInter;
 function numUp(ele,num){
 	var start = parseInt(ele.text());
@@ -90,6 +93,8 @@ function loadWin(){
 //	document.onclick = function(){
 //		launchFullscreen(document.documentElement);
 //	}
+
+//	时间定时器
     setInterval(function(){
         var dates=new Date();
         $(".win-datetime p").eq(0).text(dates.getHours()+":"+(dates.getMinutes()<10?("0"+dates.getMinutes()):dates.getMinutes()));
@@ -125,6 +130,13 @@ function loadWin(){
 	$(".windows>ul").on('dblclick touchend','a',function() {
 		var index = $(this).parent().index();
         if(running.check(appdata[index].appId)){
+        	if($('.my_win[app-id="'+ appdata[index].appId +'"]').css('display') == 'none'){
+	        	$('.win-task-app[app-id="'+ appdata[index].appId +'"]').trigger('mousedown');
+	        	$('.win-task-app[app-id="'+ appdata[index].appId +'"]').trigger('mouseup');
+        	}else{
+        		$('.my_win[app-id="'+ appdata[index].appId +'"]').trigger('mousedown');
+        		$('.my_win[app-id="'+ appdata[index].appId +'"]').trigger('mouseup');
+        	}
 			return;
 		}
 		createWin(appdata[index]);
