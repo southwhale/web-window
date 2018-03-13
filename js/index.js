@@ -82,17 +82,17 @@ function numUp(ele,num){
 //图片懒加载器
 function loadImage(arr,callback) {
 		var f = function (i) {
+			if(i < arr.length){
+	        	i++
+			}else{
+	        	callback();
+	        	return;
+			}
 			$('.loading-file').text('正在加载图片\t\t' + arr[i]);
 			$('.loading-bar .bar').css('width',(i+1)/arr.length * 100 + '%');
 			numUp($('.loading-bar span'),parseInt((i+1)/arr.length * 100));
             var img = new Image();
             img.src = arr[i];
-            if(i < arr.length - 1){
-            	i++
-			}else{
-            	callback();
-            	return;
-			}
 			img.onerror = function(){
 				f(i);
 			}
