@@ -55,7 +55,7 @@ function init(){
 	};
 	xhr.onprogress = function(ev){
 		var event = window.event || ev;
-		console.log(event.loaded/event.total)
+		console.log(event)
 		numUp($('.loading-bar span'),parseInt(event.loaded/event.total * 100));
 	}
 	xhr.send();
