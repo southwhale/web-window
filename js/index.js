@@ -82,15 +82,17 @@ function numUp(ele,num){
 //图片懒加载器
 function loadImage(arr,callback) {
 		var f = function (i) {
+			if(i > 0){
+				$('.loading-bar .bar').css('width',(i)/arr.length * 100 + '%');
+				numUp($('.loading-bar span'),parseInt((i)/arr.length * 100));
+			}
 			if(i < arr.length){
 	        	i++
 			}else{
 	        	callback();
 	        	return;
 			}
-			$('.loading-file').text('正在加载图片\t\t' + arr[i]);
-			$('.loading-bar .bar').css('width',(i+1)/arr.length * 100 + '%');
-			numUp($('.loading-bar span'),parseInt((i+1)/arr.length * 100));
+			$('.loading-file').text('正在加载图片\t\t' + arr[i-1]);
             var img = new Image();
             img.src = arr[i];
 			img.onerror = function(){
