@@ -59,7 +59,7 @@ function init(){
 		setTimeout(function(){
 			var event = window.event || ev;
 			$('.loading-bar .bar').css('width',parseInt($('.loading-bar span').text()) + 10 + '%');
-			numUp($('.loading-bar span'),parseInt($('.loading-bar span').text()) + 10 + "%");
+			numUp($('.loading-bar span'),parseInt($('.loading-bar span').text()) + 10);
 		},10)
 	}
 	xhr.send();
