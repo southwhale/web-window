@@ -579,6 +579,7 @@ ul {
 	line-height: 30px;
 }
 .loading-bar span{
+	display: none;
 	position: absolute;
 	top: -12px;
 	left: 310px;
