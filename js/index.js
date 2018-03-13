@@ -18,35 +18,48 @@ Array.prototype.check=function(a){
 	}
 //全局变量
 var mytips, a, canvas, ctx, ctx_tip,running=[],appdata=null,qp;
+init();
 
 //app数据获取
-$.getJSON("appList/appList.json",appdata,function(data){
-	var f = function(){
-		$('.loading-file').text('加载完成');
-		$('#main').css('background-image','url(img/img0.jpg)');
-        setTimeout(function () {
-            $(".loading").addClass('hide');
-            setTimeout(function () {
-                $(".loading").css('display','none');
-                $('.spinner').css('animation','none');
-				$('.spinner').css('-webkit-animation','none');
-            },1000)
-            loadWin();
-        },2000);
+function init(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','appList/appList.json');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var data = JSON.parse(xhr.responseText);
+			var f = function(){
+			$('.loading-file').text('加载完成');
+			$('#main').css('background-image','url(img/img0.jpg)');
+	        setTimeout(function () {
+	            $(".loading").addClass('hide');
+	            setTimeout(function () {
+	                $(".loading").css('display','none');
+	                $('.spinner').css('animation','none');
+					$('.spinner').css('-webkit-animation','none');
+	            },1000)
+	            loadWin();
+	        },2000);
+		};
+		appdata=data;
+		for(var i = 0;i < data.length; i ++){
+			var app = data[i];
+	        $(".windows").find("ul").append('<li>\n' +
+	            '\t\t\t\t\t\t<a href="javascript:;" app-id="'+ app.appId + '" app-index="'+ i +'">\n' +
+	            '\t\t\t\t\t\t\t<div data-url="url('+ app.img +')" style="background-image:url('+ app.img +')"></div>\n' +
+	            '\t\t\t\t\t\t\t<p>'+ app.name +'</p>\n' +
+	            '\t\t\t\t\t\t</a>\n' +
+	            '\t\t\t\t\t</li>')
+		}
+		loadImage(["img/img0.jpg"],f);
+		}
 	};
-	appdata=data;
-	for(var i = 0;i < data.length; i ++){
-		var app = data[i];
-        $(".windows").find("ul").append('<li>\n' +
-            '\t\t\t\t\t\t<a href="javascript:;" app-id="'+ app.appId + '" app-index="'+ i +'">\n' +
-            '\t\t\t\t\t\t\t<div data-url="url('+ app.img +')" style="background-image:url('+ app.img +')"></div>\n' +
-            '\t\t\t\t\t\t\t<p>'+ app.name +'</p>\n' +
-            '\t\t\t\t\t\t</a>\n' +
-            '\t\t\t\t\t</li>')
+	xhr.onprogress = function(ev){
+		var event = window.event || ev;
+		console.log(event.loaded/event.total)
+		numUp($('.loading-bar span'),parseInt(event.loaded/event.total * 100));
 	}
-	loadImage(["img/img0.jpg","img/recycle_full.png","img/recycle.png","img/shuihu.png","img/text_edit.png"],f);
-});
-
+	xhr.send();
+}
 
 //数字频繁增加器
 var numInter;
