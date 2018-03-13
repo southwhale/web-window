@@ -58,6 +58,7 @@ function init(){
 	xhr.onprogress = function(ev){
 		var event = window.event || ev;
 		$('.loading-bar .bar').css('width',parseInt($('.loading-bar span').text()) + 10 + '%');
+		console.log(parseInt($('.loading-bar span').text()) + 10)
 		numUp($('.loading-bar span'),parseInt($('.loading-bar span').text()) + 10 + "%");
 	}
 	xhr.send();
