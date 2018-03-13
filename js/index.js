@@ -27,30 +27,32 @@ function init(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var data = JSON.parse(xhr.responseText);
-				var f = function(){
-			$('.loading-file').text('加载完成');
-			$('#main').css('background-image','url(img/img0.jpg)');
-	        setTimeout(function () {
-	            $(".loading").addClass('hide');
-	            setTimeout(function () {
-	                $(".loading").css('display','none');
-	                $('.spinner').css('animation','none');
-					$('.spinner').css('-webkit-animation','none');
-	            },1000)
-	            loadWin();
-	        },2000);
-		};
-		appdata=data;
-		for(var i = 0;i < data.length; i ++){
-			var app = data[i];
-	        $(".windows").find("ul").append('<li>\n' +
-	            '\t\t\t\t\t\t<a href="javascript:;" app-id="'+ app.appId + '" app-index="'+ i +'">\n' +
-	            '\t\t\t\t\t\t\t<div data-url="url('+ app.img +')" style="background-image:url('+ app.img +')"></div>\n' +
-	            '\t\t\t\t\t\t\t<p>'+ app.name +'</p>\n' +
-	            '\t\t\t\t\t\t</a>\n' +
-	            '\t\t\t\t\t</li>')
-		}
-		loadImage(["img/img0.jpg"],f);
+			var f = function(){
+				$('.loading-file').text('加载完成');
+				$('*[data-bg]').each(function(i,el){
+					$(this).css('background-image','url('+ $(this).attr('data-bg') +')');
+				})
+		        setTimeout(function () {
+		            $(".loading").addClass('hide');
+		            setTimeout(function () {
+		                $(".loading").css('display','none');
+		                $('.spinner').css('animation','none');
+						$('.spinner').css('-webkit-animation','none');
+		            },1000)
+		            loadWin();
+		        },2000);
+			};
+			appdata=data;
+			for(var i = 0;i < data.length; i ++){
+				var app = data[i];
+		        $(".windows").find("ul").append('<li>\n' +
+		            '\t\t\t\t\t\t<a href="javascript:;" app-id="'+ app.appId + '" app-index="'+ i +'">\n' +
+		            '\t\t\t\t\t\t\t<div data-url="url('+ app.img +')" style="background-image:url('+ app.img +')"></div>\n' +
+		            '\t\t\t\t\t\t\t<p>'+ app.name +'</p>\n' +
+		            '\t\t\t\t\t\t</a>\n' +
+		            '\t\t\t\t\t</li>')
+			}
+			loadImage(["img/img0.jpg"],f);
 		}
 	};
 	xhr.onprogress = function(ev){
