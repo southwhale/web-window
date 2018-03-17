@@ -28,7 +28,8 @@ function init(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var data = JSON.parse(xhr.responseText);
 			var f = function(){
-				$('.loading-file').text('加载完成');
+                numUp($('.loading-bar span'),parseInt(100));
+                $('.loading-file').text('加载完成');
 				$('*[data-bg]').each(function(i,el){
 					$(this).css('background-image','url('+ $(this).attr('data-bg') +')');
 				})
@@ -94,7 +95,7 @@ function loadImage(arr,callback) {
 			$('.loading-file').text('正在加载图片\t\t' + arr[i-1]);
             var img = new Image();
             img.src = arr[i-1];
-            numUp($('.loading-bar span'),parseInt((i)/arr.length * 100),200)
+            numUp($('.loading-bar span'),parseInt((i)/arr.length * 100),100);
 			img.onerror = function(){
 				f(i);
 			}
