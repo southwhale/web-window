@@ -28,7 +28,7 @@ function init(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var data = JSON.parse(xhr.responseText);
 			var f = function(){
-                numUp($('.loading-bar span'),parseInt(100),0);
+                numUp($('.loading-bar span'),parseInt(100),1);
                 $('.loading-file').text('加载完成');
 				$('*[data-bg]').each(function(i,el){
 					$(this).css('background-image','url('+ $(this).attr('data-bg') +')');
