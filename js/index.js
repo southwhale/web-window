@@ -75,7 +75,7 @@ function numUp(ele,num,time){
 		} else{
 			clearInterval(numInter);
 		}
-	},time||20)
+	},typeof time == undefined ? 20 : time);
 }
 
 //图片懒加载器
