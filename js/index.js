@@ -56,7 +56,6 @@ function init(){
 		}
 	};
 	xhr.onprogress = function(ev){
-		var event = window.event || ev;
 		$('.loading-bar .bar').css('width',parseInt($('.loading-bar span').text()) + 10 + '%');
 		numUp($('.loading-bar span'),parseInt($('.loading-bar span').text()) + 10);
 	}
@@ -70,7 +69,7 @@ function numUp(ele,num,time){
 	numInter = setInterval(function(){
 		var start = parseInt(ele.text());
 		if(start < num){
-			start +=2;
+			start ++;
 			$('.loading-bar .bar').css('width',start + '%');
 			ele.text(start + '%');
 		} else{
@@ -152,8 +151,7 @@ function loadWin(){
 		var index = $(this).parent().index();
         if(running.check(appdata[index].appId)){
         	if($('.my_win[app-id="'+ appdata[index].appId +'"]').css('display') == 'none'){
-	        	$('.win-task-app[app-id="'+ appdata[index].appId +'"]').trigger('mousedown');
-	        	$('.win-task-app[app-id="'+ appdata[index].appId +'"]').trigger('mouseup');
+	        	footerClick(appdata[index].appId);
         	}else{
         		$('.my_win[app-id="'+ appdata[index].appId +'"]').trigger('mousedown');
         		$('.my_win[app-id="'+ appdata[index].appId +'"]').trigger('mouseup');
@@ -520,23 +518,7 @@ function loadWin(){
 			//进程点击事件
 			if((tempx-event.pageX)*(tempx-event.pageX)<100&&(tempy-event.pageY)*(tempy-event.pageY)<100){
 				var id=nowApp.attr("app-id");
-				if($(".app-list> [app-id="+id+"].my_win").is(".my_win:last-child")){
-					if($(".app-list> [app-id="+id+"].my_win").css("opacity")!="1" || $(".app-list> [app-id="+id+"].my_win").css("display")=="none"){
-						$(".app-list> [app-id="+id+"].my_win").fadeIn(100);
-						$(".app-list> [app-id="+id+"].my_win").insertAfter($(".my_win").last());
-						return;
-					}else{
-						$(".app-list> [app-id="+id+"].my_win").fadeOut(100);
-						setTimeout(function(){
-							$(".app-list> [app-id="+id+"].my_win").insertBefore($(".my_win").first());
-						},100)
-						return;
-					}
-				}else{
-					$(".app-list> [app-id="+id+"].my_win").fadeIn(100);
-					$(".app-list> [app-id="+id+"].my_win").insertAfter($(".my_win").last());
-					return;
-				}
+				footerClick(id);
 			}
 		});
 	})
@@ -545,6 +527,29 @@ function loadWin(){
 		$(this).insertAfter($(".my_win").last());
 	});
 }
+
+
+//底部导航点击事件
+function footerClick(id){
+		if($(".app-list> [app-id="+id+"].my_win").is(".my_win:last-child")){
+			if($(".app-list> [app-id="+id+"].my_win").css("opacity")!="1" || $(".app-list> [app-id="+id+"].my_win").css("display")=="none"){
+				$(".app-list> [app-id="+id+"].my_win").fadeIn(100);
+				$(".app-list> [app-id="+id+"].my_win").insertAfter($(".my_win").last());
+				return;
+			}else{
+				$(".app-list> [app-id="+id+"].my_win").fadeOut(100);
+				setTimeout(function(){
+					$(".app-list> [app-id="+id+"].my_win").insertBefore($(".my_win").first());
+				},100)
+				return;
+			}
+		}else{
+			$(".app-list> [app-id="+id+"].my_win").fadeIn(100);
+			$(".app-list> [app-id="+id+"].my_win").insertAfter($(".my_win").last());
+			return;
+		}
+}
+
 //			桌面失去焦点
 function lostFocus() {
     $("#win-menu").hide();
