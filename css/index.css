@@ -266,8 +266,6 @@ ul {
 	padding:30px 10px 0px 10px;
 	border-bottom-right-radius:3px ;
 	border-bottom-left-radius:3px ;
-	overflow-x: hidden;
-    overflow-y: scroll;
 	margin: 1px 2px 2px 2px;
 }
 .win-down{
