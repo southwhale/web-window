@@ -53,7 +53,7 @@ function init(){
 		            '\t\t\t\t\t\t</a>\n' +
 		            '\t\t\t\t\t</li>')
 			}
-			loadImage(["img/img0.jpg"],f);
+			loadImage(["img/text_edit.png"],f);
 		}
 	};
 	xhr.onprogress = function(ev){
