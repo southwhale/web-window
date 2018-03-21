@@ -170,7 +170,7 @@ function loadWin(){
 		shadowHide();
 	})
 		//win窗口的鼠标按下
-	$("body").delegate('.my_win', 'mousedown touchstart', function(e) {
+	$("body").delegate('.my_win', 'mousedown', function(e) {
 		var event=window.event ||e;
 		event.stopPropagation();
 		event.preventDefault();
