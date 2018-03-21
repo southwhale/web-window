@@ -143,9 +143,6 @@ function loadWin(){
 		var event=window.event || e;
 		event.stopPropagation();
 	});
-	$(document).on('touchmove',function () {
-		event.preventDefault();
-    })
 	$(".windows>ul").on('dblclick touchend','a',function() {
 		var index = $(this).parent().index();
         if(running.check(appdata[index].appId)){
