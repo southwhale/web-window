@@ -22,8 +22,12 @@ init();
 
 //app数据获取
 function init(){
+	var file = 'appList.json';
+	if(router.query.code && router.query.code == 'love'){
+        file = 'secret.json';
+	}
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','appList/appList.json');
+	xhr.open('GET','appList/' + file);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var data = JSON.parse(xhr.responseText);
